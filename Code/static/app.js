@@ -31,6 +31,34 @@ function createGraphs(names) {
         Object.entries(singleMetadata).forEach(([key, value]) => {
             demoTable.append("h5").text(`${key}: ${value}`);
         });
+
+        //Variables for graphs
+        var sampleInfo = sampleData.samples;
+        var sampleResults = sampleInfo.filter(subject => subject.id == names)[0];
+        var otuLabels = sampleResults.otu_labels;
+        var otuIds = sampleResults.otu_ids;
+        var sampleValues = sampleResults.sample_values;
+
+        //Bar graph
+        var barIds = otuIds.slice(0, 10).reverse();
+        var barLabels = otuLabels.slice(0, 10).reverse();
+        var barValues = sampleValues.slice(0, 10).reverse();
+
+        var barTrace = [{
+            x: barValues,
+            y: barIds.map(id => `OTU ID ${id}`),
+            text: barLabels,
+            type: "bar",
+            orientation: "h"
+        }];
+
+        var barLayout = {
+            height: 500,
+            widtgh: 700,
+            title: `<b>Top 10 OTUs Found in Selected Subject</b>`
+        }
+        Plotly.newPlot("bar", barTrace, barLayout);
+
     })
 };
 
