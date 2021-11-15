@@ -59,6 +59,28 @@ function createGraphs(names) {
         }
         Plotly.newPlot("bar", barTrace, barLayout);
 
+        var bubbleTrace = [{
+            x: otuIds,
+            y: sampleValues,
+            text: otuLabels,
+            mode: "markers",
+            marker: {
+                size: sampleValues,
+                color: otuIds,
+                colorscale: "Portland"
+            }
+        }];
+
+        var bubbleLayout = {
+            yaxis: {
+                title: "<b>Sample Values</b>"
+            },
+            xaxis: {
+                title: "<b>OTU ID</b>"
+            }
+        }
+
+        Plotly.newPlot("bubble", bubbleTrace, bubbleLayout);
     })
 };
 
