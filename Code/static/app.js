@@ -59,6 +59,7 @@ function createGraphs(names) {
         }
         Plotly.newPlot("bar", barTrace, barLayout);
 
+        // Bubble chart
         var bubbleTrace = [{
             x: otuIds,
             y: sampleValues,
@@ -84,7 +85,7 @@ function createGraphs(names) {
     })
 };
 
-
+//If a different ID/Sample is chosen from dropdown menu
 function optionChanged(differentSample) {
     createGraphs(differentSample);
 };
